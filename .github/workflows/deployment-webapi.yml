@@ -55,5 +55,3 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_SERVICE_APP_PUBLISH_PROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
-          environment: 'Development'
-          DOTNET_ENVIRONMENT: 'Development'
