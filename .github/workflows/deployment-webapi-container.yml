@@ -1,0 +1,37 @@
+name: Build and deploy NET7 Core WebAPI Container
+
+on:
+  workflow_dispatch:
+
+env:
+  REGISTRY_LOGIN_SERVER: net7webapicontainer.azurecr.io
+
+jobs:
+  docker_build_push_acr:
+    name: 'Docker Build and Push to ACR'
+    runs-on: ubuntu-latest
+    environment: Development
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: 'Docker Login'
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ env.REGISTRY_LOGIN_SERVER }}
+        username: ${{ secrets.REGISTRY_USERNAME }}
+        password: ${{ secrets.REGISTRY_PASSWORD }}
+
+    - name: Build and push it to ACR
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: ${{ env.REGISTRY_LOGIN_SERVER }}/net7webapicontainer:${{ github.sha }}
+        file: ./Dockerfile
