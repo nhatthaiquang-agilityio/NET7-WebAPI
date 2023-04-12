@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: ${{env.AZURE_WEBAPP_PACKAGE_PATH}}/myapp
 
   deploy:
     runs-on: windows-latest
