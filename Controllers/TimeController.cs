@@ -16,6 +16,7 @@ namespace NET7_WebAPI.Controllers
         [HttpGet(Name = "GetTime")]
         public String GetTime()
         {
+             _logger.LogInformation("Get Time");
             return DateTime.Now.ToString();
         }
     }
