@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: webapi
-        image: net7webapicontainer.azurecr.io/net7web-api:latest
+        image: net7webapicontainer.azurecr.io/net7webapicontainer:9207cb8496a9c81b7b17b0793f27f1e78df583ba
         imagePullPolicy: Always
         env:
         - name: PATH_BASE
